@@ -9,8 +9,6 @@ deleting tasks in a simple and clean way.
 ### 🔥 Frontend
 
 ✅ React<br/>
-✅ Axios<br/>
-✅ Redux<br/>
 ✅ Tailwind CSS<br/>
 
 ### 🔥 Backend
