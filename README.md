@@ -18,6 +18,13 @@ deleting tasks in a simple and clean way.
 
 ## 🚀 Features
 
+✅ Add new tasks<br/>
+✅ Mark tasks as completed<br/>
+✅ Edit existing tasks<br/>
+✅ Delete tasks<br/>
+✅ Persistent storage with MySQL<br/>
+✅ Clean and modern UI with Tailwind<br/>
+
 ## ▶️ How to Run the Project
 
 ### ⚛️ Frontend (React)
