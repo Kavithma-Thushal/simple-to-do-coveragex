@@ -15,7 +15,7 @@ export default function TaskCard({task}: Props) {
             </div>
             <button
                 onClick={() => completeTask(task.id)}
-                className="px-3 py-1 border rounded text-sm hover:bg-gray-200">
+                className="px-3 py-1 bg-blue-600 text-white text-sm rounded">
                 Done
             </button>
         </div>

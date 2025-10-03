@@ -8,8 +8,8 @@ export default function GetTasksController() {
 
     const getTasks = async () => {
         try {
-            const res = await axios.get(`${BASE_URL}/task/read`);
-            setTasks(res.data.data || []);
+            const response = await axios.get(`${BASE_URL}/task/read`);
+            setTasks(response.data.data);
         } catch (error: any) {
             errorNotification(Object.values(error.response.data.error));
         }
@@ -17,15 +17,6 @@ export default function GetTasksController() {
 
     useEffect(() => {
         getTasks();
-        const createdHandler = () => getTasks();
-        const completedHandler = () => getTasks();
-        window.addEventListener('task:created', createdHandler);
-        window.addEventListener('task:completed', completedHandler);
-
-        return () => {
-            window.removeEventListener('task:created', createdHandler);
-            window.removeEventListener('task:completed', completedHandler);
-        };
     }, []);
 
     return {
