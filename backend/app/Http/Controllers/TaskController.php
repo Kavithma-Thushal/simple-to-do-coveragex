@@ -56,7 +56,7 @@ class TaskController extends Controller
             DB::commit();
 
             return response()->json([
-                'message' => 'Task marked as completed',
+                'message' => 'Task completed',
                 'data' => $task
             ]);
         } catch (Exception $e) {

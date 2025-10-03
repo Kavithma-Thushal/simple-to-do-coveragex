@@ -1,20 +1,17 @@
 import axios from 'axios';
 import {BASE_URL} from '../config/api';
 import {useState, useEffect} from 'react';
+import {errorNotification} from "../util/alert.ts";
 
 export default function GetTasksController() {
     const [tasks, setTasks] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
 
     const getTasks = async () => {
-        setLoading(true);
         try {
-            const res = await axios.get(`${BASE_URL}/get`);
+            const res = await axios.get(`${BASE_URL}/task/read`);
             setTasks(res.data.data || []);
-        } catch (err) {
-            console.error(err);
-        } finally {
-            setLoading(false);
+        } catch (error: any) {
+            errorNotification(Object.values(error.response.data.error));
         }
     };
 
@@ -32,8 +29,6 @@ export default function GetTasksController() {
     }, []);
 
     return {
-        tasks,
-        loading,
-        getTasks,
+        tasks
     };
 }

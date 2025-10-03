@@ -1,26 +1,18 @@
 import axios from 'axios';
 import {BASE_URL} from '../config/api';
-import {useState} from 'react';
 import {successNotification, errorNotification} from '../util/alert';
 
 export default function CompleteTaskController() {
-    const [processing, setProcessing] = useState(false);
-
     const completeTask = async (id: number) => {
-        setProcessing(true);
         try {
-            await axios.patch(`${BASE_URL}/${id}`);
-            successNotification('Task marked as completed');
-            window.dispatchEvent(new Event('task:completed'));
-        } catch (err: any) {
-            errorNotification(err?.response?.data?.message || 'Failed to mark task done');
-        } finally {
-            setProcessing(false);
+            const response = await axios.patch(`${BASE_URL}/task/${id}`);
+            successNotification(response.data.message);
+        } catch (error: any) {
+            errorNotification(Object.values(error.response.data.error));
         }
     };
 
     return {
-        processing,
         completeTask,
     };
 }
