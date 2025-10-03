@@ -1,61 +1,30 @@
-import {useState} from 'react';
+import CreateTaskController from '../../controllers/CreateTaskController.ts';
 
-interface Props {
-    taskController: any;
-}
-
-export default function TaskForm({taskController}: Props) {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [submitting, setSubmitting] = useState(false);
-    const [message, setMessage] = useState('');
-
-    const clear = () => {
-        setTitle('');
-        setDescription('');
-    };
-
-    const handleSubmit = async (e: any) => {
-        e.preventDefault();
-        setSubmitting(true);
-        setMessage('');
-
-        try {
-            await taskController.createTask({title, description});
-            setMessage('Task added');
-            clear();
-            window.dispatchEvent(new Event('task:created'));
-        } catch (err: any) {
-            setMessage(err?.response?.data?.message || 'Failed to add task');
-        } finally {
-            setSubmitting(false);
-            setTimeout(() => setMessage(''), 2000);
-        }
-    };
+export default function TaskForm() {
+    const {form, handleChange, createTask} = CreateTaskController();
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={createTask} className="space-y-4">
             <input
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                name="title"
+                value={form.title}
+                onChange={handleChange}
                 placeholder="Title"
                 className="w-full border rounded px-3 py-2"
                 required
             />
             <textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                name="description"
+                value={form.description}
+                onChange={handleChange}
                 placeholder="Description"
                 className="w-full border rounded px-3 py-2 h-28"
             />
             <button
                 type="submit"
-                disabled={submitting}
-                className="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50"
-            >
-                {submitting ? 'Adding...' : 'Add'}
+                className="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50">
+                Add
             </button>
-            {message && <div className="text-sm text-gray-600">{message}</div>}
         </form>
     );
 }
