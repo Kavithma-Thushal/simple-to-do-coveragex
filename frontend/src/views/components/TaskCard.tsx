@@ -9,14 +9,14 @@ export default function TaskCard({task, getTasks}: Props) {
     const {completeTask} = CompleteTaskController(getTasks);
 
     return (
-        <div className="bg-gray-100 rounded-md p-4 shadow-inner flex justify-between items-center">
+        <div className="flex justify-between items-center bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-sm">
             <div>
-                <div className="font-semibold">{task.title}</div>
-                {task.description && <div className="text-sm text-gray-600 mt-1">{task.description}</div>}
+                <h3 className="font-semibold text-gray-900 dark:text-gray-100">{task.title}</h3>
+                {task.description && (<p className="text-sm text-gray-600 dark:text-gray-300">{task.description}</p>)}
             </div>
             <button
                 onClick={() => completeTask(task.id)}
-                className="px-3 py-1 bg-blue-600 text-white text-sm rounded">
+                className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 dark:hover:bg-blue-500">
                 Done
             </button>
         </div>
