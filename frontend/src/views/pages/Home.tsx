@@ -2,6 +2,7 @@ import TaskForm from '../components/TaskForm';
 import TaskList from '../components/TaskList';
 import GetTasksController from '../../controllers/GetTasksController';
 import {useState, useEffect} from 'react';
+import {FaSun, FaMoon} from 'react-icons/fa';
 
 export default function Home() {
     const {tasks, getTasks} = GetTasksController();
@@ -29,7 +30,8 @@ export default function Home() {
                 <button
                     onClick={() => setDarkMode(!darkMode)}
                     className="px-3 sm:px-4 py-2 m-2 text-sm rounded-md bg-gray-200 dark:bg-gray-700 dark:text-gray-100 hover:bg-gray-300 dark:hover:bg-gray-600">
-                    {darkMode ? 'Light Mode ☀️' : 'Dark Mode 🌙'}
+                    {darkMode ? 'Light Mode' : 'Dark Mode'}
+                    {darkMode ? <FaSun className="inline-block ml-2"/> : <FaMoon className="inline-block ml-2"/>}
                 </button>
             </div>
 
