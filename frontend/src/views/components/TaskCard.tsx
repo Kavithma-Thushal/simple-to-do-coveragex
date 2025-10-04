@@ -2,10 +2,11 @@ import CompleteTaskController from '../../controllers/CompleteTaskController';
 
 interface Props {
     task: any;
+    getTasks: () => void;
 }
 
-export default function TaskCard({task}: Props) {
-    const {completeTask} = CompleteTaskController();
+export default function TaskCard({task, getTasks}: Props) {
+    const {completeTask} = CompleteTaskController(getTasks);
 
     return (
         <div className="bg-gray-100 rounded-md p-4 shadow-inner flex justify-between items-center">

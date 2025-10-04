@@ -1,7 +1,11 @@
 import CreateTaskController from '../../controllers/CreateTaskController.ts';
 
-export default function TaskForm() {
-    const {form, handleChange, createTask} = CreateTaskController();
+interface Props {
+    getTasks: () => void;
+}
+
+export default function TaskForm({getTasks}: Props) {
+    const {form, handleChange, createTask} = CreateTaskController(getTasks);
 
     return (
         <form onSubmit={createTask} className="space-y-4">

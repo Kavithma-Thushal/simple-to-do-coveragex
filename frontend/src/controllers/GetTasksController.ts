@@ -20,6 +20,7 @@ export default function GetTasksController() {
     }, []);
 
     return {
-        tasks
+        tasks,
+        getTasks,
     };
 }
