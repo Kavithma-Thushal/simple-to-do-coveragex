@@ -1,8 +1,8 @@
 import {FaPlus} from 'react-icons/fa';
-import CreateTaskController from '../../controllers/CreateTaskController.ts';
+import AddTaskController from '../../controllers/AddTaskController.ts';
 
 export default function TaskForm({getTasks}: { getTasks: () => void }) {
-    const {form, handleChange, createTask} = CreateTaskController(getTasks);
+    const {form, handleChange, createTask} = AddTaskController(getTasks);
 
     return (
         <form onSubmit={createTask} className="space-y-5">

@@ -2,10 +2,10 @@ import {useState, useEffect} from 'react';
 import {FaSun, FaMoon} from 'react-icons/fa';
 import TaskForm from '../components/TaskForm';
 import TaskList from '../components/TaskList';
-import GetTasksController from '../../controllers/GetTasksController';
+import GetAllTaskController from '../../controllers/GetAllTaskController.ts';
 
 export default function Home() {
-    const {tasks, getTasks} = GetTasksController();
+    const {tasks, getTasks} = GetAllTaskController();
     const [darkMode, setDarkMode] = useState(false);
 
     useEffect(() => {
