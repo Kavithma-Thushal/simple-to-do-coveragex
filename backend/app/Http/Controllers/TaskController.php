@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class TaskController extends Controller
 {
 
-    public function create(Request $request)
+    public function add(Request $request)
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
@@ -32,11 +32,11 @@ class TaskController extends Controller
         }
     }
 
-    public function read()
+    public function getAll()
     {
         DB::beginTransaction();
         try {
-            $tasks = Task::where('completed', false)->orderBy('created_at', 'desc')->limit(5)->get();
+            $tasks = Task::where('complete', false)->orderBy('created_at', 'desc')->limit(5)->get();
             DB::commit();
 
             return response()->json([
@@ -48,11 +48,12 @@ class TaskController extends Controller
         }
     }
 
-    public function update(Task $task)
+    public function complete($id)
     {
         DB::beginTransaction();
         try {
-            $task->update(['completed' => true]);
+            $task = Task::findOrFail($id);
+            $task->update(['complete' => true]);
             DB::commit();
 
             return response()->json([
