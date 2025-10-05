@@ -7,7 +7,7 @@ interface Props {
 
 export default function TaskList({tasks, getTasks}: Props) {
     if (!tasks.length) {
-        return <div className="text font-medium text-gray-500">No tasks yet</div>
+        return <div className="text-lg font-medium text-gray-500 dark:text-gray-400">🎉 Yeeee... you are free now!</div>;
     }
 
     return (
