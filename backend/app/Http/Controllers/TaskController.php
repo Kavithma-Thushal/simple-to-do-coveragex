@@ -2,67 +2,57 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Task;
-use Exception;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Classes\ErrorResponse;
+use App\Http\Requests\TaskRequest;
+use App\Http\Resources\SuccessResource;
+use App\Http\Resources\TaskResource;
+use App\Http\Services\TaskService;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class TaskController extends Controller
 {
+    protected TaskService $taskService;
 
-    public function add(Request $request)
+    public function __construct(TaskService $taskService)
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-        ]);
+        $this->taskService = $taskService;
+    }
 
-        DB::beginTransaction();
+    public function add(TaskRequest $request)
+    {
         try {
-            $task = Task::create($validated);
-            DB::commit();
-
-            return response()->json([
+            $task = $this->taskService->add($request->validated());
+            return new SuccessResource([
                 'message' => 'Task added',
-                'data' => $task
+                'data' => new TaskResource($task)
             ]);
-        } catch (Exception $e) {
-            DB::rollBack();
-            throw new Exception($e);
+        } catch (HttpException $e) {
+            ErrorResponse::throwException($e);
         }
     }
 
     public function getAll()
     {
-        DB::beginTransaction();
         try {
-            $tasks = Task::where('complete', false)->orderBy('created_at', 'desc')->limit(5)->get();
-            DB::commit();
-
-            return response()->json([
-                'data' => $tasks
+            $tasks = $this->taskService->getAll();
+            return new SuccessResource([
+                'data' => TaskResource::collection($tasks)
             ]);
-        } catch (Exception $e) {
-            DB::rollBack();
-            throw new Exception($e);
+        } catch (HttpException $e) {
+            ErrorResponse::throwException($e);
         }
     }
 
     public function complete($id)
     {
-        DB::beginTransaction();
         try {
-            $task = Task::findOrFail($id);
-            $task->update(['complete' => true]);
-            DB::commit();
-
-            return response()->json([
+            $task = $this->taskService->complete($id);
+            return new SuccessResource([
                 'message' => 'Task completed',
-                'data' => $task
+                'data' => new TaskResource($task)
             ]);
-        } catch (Exception $e) {
-            DB::rollBack();
-            throw new Exception($e);
+        } catch (HttpException $e) {
+            ErrorResponse::throwException($e);
         }
     }
 }
