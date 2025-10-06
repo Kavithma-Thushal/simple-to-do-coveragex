@@ -3,7 +3,7 @@ import {BASE_URL} from '../config/api';
 import {useState, useEffect} from 'react';
 import {errorNotification} from "../util/alert.ts";
 
-export default function GetAllTaskController() {
+export default function GetAllTasksController() {
     const [tasks, setTasks] = useState<any[]>([]);
 
     const getTasks = async () => {
