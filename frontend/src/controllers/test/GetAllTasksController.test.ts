@@ -18,23 +18,28 @@ describe('GetAllTasksController', () => {
         vi.clearAllMocks();
     });
 
-    it('should getAll tasks', async () => {
+    it('should get all tasks', async () => {
         const mockTasks = [
             {id: 1, title: 'Test Title 1', description: 'Test Description 1'},
             {id: 2, title: 'Test Title 2', description: 'Test Description 2'},
         ];
+
         mockAxios.onGet(`${BASE_URL}/task/getAll`).reply(200, {data: mockTasks});
+
         const {result} = renderHook(() => GetAllTasksController());
+
         await waitFor(() => {
             expect(result.current.tasks).toEqual(mockTasks);
         });
     });
 
-    it('should handle getAll tasks error', async () => {
+    it('should handle get all tasks error', async () => {
         mockAxios.onGet(`${BASE_URL}/task/getAll`).reply(500, {
             error: {message: ['Something went wrong']},
         });
+
         renderHook(() => GetAllTasksController());
+
         await waitFor(() => {
             expect(errorNotification).toHaveBeenCalled();
         });

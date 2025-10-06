@@ -15,6 +15,7 @@ const mockAxios = new MockAdapter(axios);
 
 describe('AddTaskController', () => {
     const mockGetTasks = vi.fn();
+
     beforeEach(() => {
         mockAxios.reset();
         vi.clearAllMocks();
@@ -25,17 +26,21 @@ describe('AddTaskController', () => {
             message: 'Task added',
             data: {id: 1, title: 'Test Title', description: 'Test Description', complete: false},
         });
+
         const {result} = renderHook(() => AddTaskController(mockGetTasks));
+
         act(() => {
             result.current.handleChange({target: {name: 'title', value: 'Test Title'}});
             result.current.handleChange({target: {name: 'description', value: 'Test Description'}});
         });
+
         await act(async () => {
             await result.current.createTask({
                 preventDefault: () => {
                 }
             });
         });
+
         expect(successNotification).toHaveBeenCalledWith('Task added');
         expect(mockGetTasks).toHaveBeenCalled();
     });
@@ -44,13 +49,16 @@ describe('AddTaskController', () => {
         mockAxios.onPost(`${BASE_URL}/task/add`).reply(400, {
             error: {title: ['Title is required']},
         });
+
         const {result} = renderHook(() => AddTaskController(mockGetTasks));
+
         await act(async () => {
             await result.current.createTask({
                 preventDefault: () => {
                 }
             });
         });
+
         expect(errorNotification).toHaveBeenCalled();
     });
 });
