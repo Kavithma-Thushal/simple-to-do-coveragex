@@ -9,37 +9,111 @@ deleting tasks in a simple and clean way.
 ### 🔥 Frontend
 
 ✅ React<br/>
+✅ Vite<br/>
+✅ Typescript<br/>
 ✅ Tailwind CSS<br/>
 
 ### 🔥 Backend
 
 ✅ Laravel<br/>
+✅ PHPUnit<br/>
 ✅ MySQL<br/>
 
 ## 🚀 Features
 
 ✅ Add new tasks<br/>
+✅ View all tasks<br/>
 ✅ Mark tasks as completed<br/>
-✅ Edit existing tasks<br/>
-✅ Delete tasks<br/>
 ✅ Persistent storage with MySQL<br/>
 ✅ Clean and modern UI with Tailwind<br/>
 
 ## ▶️ How to Run the Project
 
-1. Open `Docker Desktop` on your machine.
-2. Open a terminal in the `Project Root` directory.
-3. Run the following command to build and start all containers:
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/Kavithma-Thushal/simple-to-do-coveragex.git
+
+2. Install dependencies:
+
+* Frontend
+  ```bash
+  cd frontend
+  npm install
+
+* Backend
+  ```bash
+  cd backend
+  composer install
+
+3. Open `Docker Desktop` Software on your machine.
+
+4. Open a terminal in the `Project Root` directory.
+
+5. Build and start the containers:
    ```bash
    docker-compose up --build
-4. Open your browser and access:
+
+6. Open your browser and access:
     ```bash
     http://localhost:5173
-5. Enjoy it!
 
-## 📝 Version
+7. ✅ You’re all set! Add, view, and manage your tasks easily!
 
-**1.0.0**
+## 🐬 How to Access the MySQL Database (Docker)
+
+1. Open a terminal in the `Project Root` directory.
+
+2. Run this command to enter the MySQL container:
+    ```bash
+   docker exec -it db mysql -u root -p
+
+3. Enter the password:
+    ```bash
+   1234
+
+4. Select the database:
+    ```bash
+   USE to-do;
+
+5. View tasks table:
+    ```bash
+   SELECT * FROM tasks;
+
+## 🧪 How to test
+
+* Frontend
+    ```bash
+  cd frontend
+  npx vitest run
+
+* Backend
+    ```bash
+  cd backend
+  php artisan test
+
+## 🔗 API Endpoints (Laravel)
+
+✅ POST /api/task/add<br/>
+✅ GET /api/task/getAll<br/>
+✅ PATCH /api/task/complete<br/>
+
+## 📸 Screenshots
+
+### Frontend-Light
+
+<img src="ss/frontend-light.png">
+
+### Frontend-Dark
+
+<img src="ss/frontend-dark.png">
+
+### MySQL DB
+
+<img src="ss/mysql-db.png">
+
+### Tests
+
+<img src="ss/tests.png">
 
 ## 📬 Get in Touch
 
