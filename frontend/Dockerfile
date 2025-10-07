@@ -4,8 +4,10 @@ FROM node:18-alpine AS build
 # Set working directory
 WORKDIR /app
 
-# Copy config and install dependencies
+# Copy config
 COPY package.json package-lock.json tsconfig.json vite.config.ts ./
+
+# Install dependencies
 RUN npm install
 
 # Copy project files
@@ -14,7 +16,7 @@ COPY . .
 # Build app
 RUN npm run build
 
-# Use Nginx to serve build files
+# Use Nginx
 FROM nginx:alpine
 
 # Copy built files to Nginx directory

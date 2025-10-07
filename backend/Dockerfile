@@ -4,7 +4,7 @@ FROM php:8.2-fpm
 # Set working directory
 WORKDIR /var/www/html
 
-# Install system dependencies and PHP extensions
+# Install dependencies
 RUN apt-get update && apt-get install -y \
     zip unzip libpng-dev libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev default-mysql-client \
   && docker-php-ext-configure gd --with-freetype --with-jpeg \
@@ -17,7 +17,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 # Copy project files
 COPY . .
 
-# Install PHP dependencies
+# Install dependencies
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
 # Set permissions

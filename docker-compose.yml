@@ -3,7 +3,7 @@ services:
   # MySQL Database
   db:
     image: mysql:8.0
-    container_name: todo-db
+    container_name: db
     restart: always
     environment:
       MYSQL_DATABASE: to-do
@@ -17,12 +17,14 @@ services:
   backend:
     build:
       context: ./backend
-    container_name: todo-backend
+    container_name: backend
     restart: always
     depends_on:
       - db
     volumes:
       - ./backend:/var/www/html
+      - ./.env:/var/www/html/.env
+      - ./db.sh:/var/www/html/db.sh
     ports:
       - "8000:8000"
     environment:
@@ -32,13 +34,13 @@ services:
       DB_DATABASE: to-do
       DB_USERNAME: root
       DB_PASSWORD: 1234
-    command: sh -c "./wait-for-db.sh"
+    command: sh -c "./db.sh"
 
   # React Frontend
   frontend:
     build:
       context: ./frontend
-    container_name: todo-frontend
+    container_name: frontend
     restart: always
     depends_on:
       - backend
