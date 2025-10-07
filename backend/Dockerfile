@@ -6,7 +6,7 @@ WORKDIR /var/www/html
 
 # Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
-    zip unzip libpng-dev libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev \
+    zip unzip libpng-dev libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev default-mysql-client \
   && docker-php-ext-configure gd --with-freetype --with-jpeg \
   && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd xml \
   && rm -rf /var/lib/apt/lists/*

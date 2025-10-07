@@ -27,16 +27,10 @@ deleting tasks in a simple and clean way.
 
 ## ▶️ How to Run the Project
 
-### ⚛️ Frontend (React)
-
-1. Install dependencies - `npm install`
-2. Start the development server - `npm run dev`
-
-### 📦 Backend (Laravel)
-
-1. Install dependencies - `composer install`
-2. Migrate the database - `php artisan migrate`
-3. Start the Laravel server - `php artisan serve`
+1. **Open Docker Desktop** on your machine.
+2. Open a terminal in the **project root** directory.
+3. Run the project with Docker Compose: `docker-compose up --build`
+4. Open your browser and access: `http://localhost:5173`
 
 ## 📝 Version
 
