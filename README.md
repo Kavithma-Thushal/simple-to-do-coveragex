@@ -59,7 +59,7 @@ deleting tasks in a simple and clean way.
 
 7. ✅ You’re all set! Add, view, and manage your tasks easily!
 
-## 🐬 How to Access the MySQL Database (Docker)
+## 🐬 How to Access the MySQL Database (Docker) - Optional
 
 1. Open a terminal in the `Project Root` directory.
 
