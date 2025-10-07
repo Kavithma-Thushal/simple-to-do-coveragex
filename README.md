@@ -29,8 +29,12 @@ deleting tasks in a simple and clean way.
 
 1. Open `Docker Desktop` on your machine.
 2. Open a terminal in the `Project Root` directory.
-3. Run this command in terminal to start the project with Docker Compose: `docker-compose up --build`
-4. Open your browser and access: `http://localhost:5173`
+3. Run the following command to build and start all containers:
+   ```bash
+   docker-compose up --build
+4. Open your browser and access:
+    ```bash
+    http://localhost:5173
 5. Enjoy it!
 
 ## 📝 Version
