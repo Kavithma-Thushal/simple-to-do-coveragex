@@ -27,10 +27,11 @@ deleting tasks in a simple and clean way.
 
 ## ▶️ How to Run the Project
 
-1. **Open Docker Desktop** on your machine.
-2. Open a terminal in the **project root** directory.
-3. Run the project with Docker Compose: `docker-compose up --build`
+1. Open `Docker Desktop` on your machine.
+2. Open a terminal in the `Project Root` directory.
+3. Run this command in terminal to start the project with Docker Compose: `docker-compose up --build`
 4. Open your browser and access: `http://localhost:5173`
+5. Enjoy it!
 
 ## 📝 Version
 
