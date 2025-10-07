@@ -24,7 +24,6 @@ services:
     volumes:
       - ./backend:/var/www/html
       - ./.env:/var/www/html/.env
-      - ./db.sh:/var/www/html/db.sh
     ports:
       - "8000:8000"
     environment:
@@ -34,7 +33,7 @@ services:
       DB_DATABASE: to-do
       DB_USERNAME: root
       DB_PASSWORD: 1234
-    command: sh -c "./db.sh"
+    command: sh /var/www/html/db.sh
 
   # React Frontend
   frontend:
